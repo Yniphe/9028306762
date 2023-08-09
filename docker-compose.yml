@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/task-1
+      - JWT_SECRET_KEY=example secret
+      - JWT_EXPIRES_IN=1d
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:6.0-rc
